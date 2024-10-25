@@ -1,1 +1,3 @@
-Khachhang.java
+public class khachHang{
+  
+}
