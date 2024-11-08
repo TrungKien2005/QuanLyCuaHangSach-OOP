@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SachNauAn extends Sach{
@@ -13,13 +14,22 @@ public class SachNauAn extends Sach{
     public String getLoaiMon(){
         return  LoaiMon;
     }
-    public void setLoaiMon(){
+    public void setLoaiMon(String LoaiMon){
         this.LoaiMon = LoaiMon;
     }
-    public void Nhap(){
-        super.Nhap();
+    public void Nhap(ArrayList<Sach> dss){
+        super.Nhap(dss);
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nhap the loai cho mon an (Chinh - Phu - Trang mieng): ");
         LoaiMon = scanner.nextLine();
+    }
+    @Override
+    public String toString(){
+        return tl + "," + super.toString() + "," + LoaiMon;
+    }
+    @Override
+    public void InThongTin(){
+        super.Xuat();
+        System.out.println("Loai mon: "+LoaiMon);
     }
 }
