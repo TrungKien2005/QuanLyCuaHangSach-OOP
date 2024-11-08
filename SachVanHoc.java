@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class SachVanHoc extends Sach{
     private String TLVH;
@@ -15,10 +16,19 @@ public class SachVanHoc extends Sach{
     public void setTLVH(String TLVH){
         this.TLVH = TLVH;
     }
-    public void Nhap(){
-        super.Nhap();
+    public void Nhap(ArrayList<Sach> dss){
+        super.Nhap(dss);
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nhap the loai van hoc (Truyen ngan - Truyen dai - Tho - Kich): ");
         TLVH = scanner.nextLine();
+    }
+    @Override
+    public String toString(){
+        return tl + "," + super.toString() + "," + TLVH;
+    }
+    @Override
+    public void InThongTin(){
+        super.Xuat();
+        System.out.println("The loai van hoc: "+TLVH);
     }
 }
