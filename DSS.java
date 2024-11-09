@@ -9,6 +9,9 @@ public class DSS implements IChucNang {
     public DSS() {
         dss = new ArrayList<>(); // Khởi tạo ArrayList rỗng
     }
+    public DSS(ArrayList<Sach> dss){
+        this.dss=(ArrayList<Sach>) dss;
+    }
     @Override
     public void Them() {
         System.out.println("Chon loai sach de them: 1. Sach Khoa Hoc 2. Sach Nau An 3. Sach Van Hoc");
