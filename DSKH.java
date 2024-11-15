@@ -1,22 +1,14 @@
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-import java.io.FileWriter;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.BufferedReader;
-import java.io.IOException;
-public class DSKH implements IChucNang {
-    static List<KhachHang> dskh;
+import java.io.*;
 
-    Scanner sc = new Scanner(System.in);
+public class DSKH implements IChucNang {
+    private ArrayList<KhachHang> dskh;
+    private Scanner sc;
 
     public DSKH() {
         dskh = new ArrayList<>();
-    }
-
-    public DSKH(List<KhachHang> dskh) {
-        this.dskh = dskh;
+        sc = new Scanner(System.in);
     }
 
     @Override
@@ -24,41 +16,32 @@ public class DSKH implements IChucNang {
         KhachHang kh = new KhachHang();
         kh.Nhap();
         dskh.add(kh);
+        System.out.println("Đã thêm khách hàng.");
     }
 
     @Override
     public void Sua() {
         System.out.print("Nhập mã khách hàng cần sửa: ");
         String maKH = sc.nextLine();
-        boolean timThay = false;
         for (KhachHang kh : dskh) {
             if (kh.getMaKH().equals(maKH)) {
                 System.out.println("Nhập thông tin mới cho khách hàng:");
                 kh.Nhap();
-                timThay = true;
                 System.out.println("Đã cập nhật thông tin khách hàng.");
-                break;
-            }
-            if (!timThay) {
-                System.out.println("Không tìm thấy khách hàng với mã " + maKH);
+                return;
             }
         }
+        System.out.println("Không tìm thấy khách hàng với mã " + maKH);
     }
 
     @Override
     public void Xoa() {
         System.out.print("Nhập mã khách hàng cần xóa: ");
         String maKH = sc.nextLine();
-        boolean timThay = false;
-        for (int i = 0; i < dskh.size(); i++) {
-            if (dskh.get(i).getMaKH().equals(maKH)) {
-                dskh.remove(i);
-                System.out.println("Đã xóa khách hàng với mã " + maKH);
-                timThay = true;
-                break;
-            }
-        }
-        if (!timThay) {
+        boolean removed = dskh.removeIf(kh -> kh.getMaKH().equals(maKH));
+        if (removed) {
+            System.out.println("Đã xóa khách hàng với mã " + maKH);
+        } else {
             System.out.println("Không tìm thấy khách hàng với mã " + maKH);
         }
     }
@@ -67,15 +50,20 @@ public class DSKH implements IChucNang {
     public void TimKiem() {
         System.out.print("Nhập mã hoặc tên khách hàng cần tìm: ");
         String keyword = sc.nextLine().toLowerCase();
-        boolean timThay = false;
+        ArrayList<KhachHang> ketQua = new ArrayList<>();
         for (KhachHang kh : dskh) {
-            if (kh.getMaKH().toLowerCase().contains(keyword) || kh.getTenKH().toLowerCase().contains(keyword)) {
-                kh.Xuat();
-                timThay = true;
+            if (kh.getMaKH().toLowerCase().contains(keyword) ||
+                    kh.getTenKH().toLowerCase().contains(keyword)) {
+                ketQua.add(kh);
             }
         }
-        if (!timThay) {
+        if (ketQua.isEmpty()) {
             System.out.println("Không tìm thấy khách hàng với từ khóa " + keyword);
+        } else {
+            System.out.println("Kết quả tìm kiếm:");
+            for (KhachHang kh : ketQua) {
+                kh.Xuat();
+            }
         }
     }
 
@@ -84,25 +72,31 @@ public class DSKH implements IChucNang {
         if (dskh.isEmpty()) {
             System.out.println("Danh sách khách hàng trống.");
         } else {
+            System.out.println("Danh sách khách hàng:");
             for (KhachHang kh : dskh) {
-                kh.Xuat(); 
+                kh.Xuat();
             }
         }
     }
 
     @Override
-    public void Ghifile() {}
+    public void Ghifile() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("src/dataKhachHang.txt"))) {
+            for (KhachHang kh : dskh) {
+                bw.write(kh.toString());
+                bw.newLine();
+            }
+            System.out.println("Đã ghi danh sách khách hàng ra file.");
+        } catch (IOException e) {
+            System.out.println("Lỗi ghi file: " + e.getMessage());
+        }
+    }
 
     @Override
-    public void Docfile() {}
-
-    public void DocFile() {
-        List<KhachHang> list = new ArrayList<>();
-        try {
-            FileReader fr = new FileReader("java/dataKhachHang.txt");
-            BufferedReader br = new BufferedReader(fr);
+    public void Docfile() {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/dataKhachHang.txt"))) {
+            dskh.clear();
             String line;
-
             while ((line = br.readLine()) != null) {
                 String[] getData = line.split(",");
                 if (getData.length == 4) {
@@ -111,81 +105,45 @@ public class DSKH implements IChucNang {
                     String sdt = getData[2];
                     String diachi = getData[3];
 
-                    KhachHang kh = new KhachHang(maKH, tenKH, sdt, diachi);
-                    list.add(kh);
+                    dskh.add(new KhachHang(maKH, tenKH, sdt, diachi));
                 }
             }
-            br.close();
-            fr.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        dskh = new ArrayList<>(list);  
-        System.out.println("Đã đọc danh sách khách hàng từ file.");
-    }
-    public void GhiFile() {
-        try {
-            FileWriter fw = new FileWriter("java/dataKhachHang.txt");
-            BufferedWriter bw = new BufferedWriter(fw);
-            for (KhachHang kh : dskh) {
-                bw.write(kh.toString());  
-                bw.newLine();
-            }
-            bw.close();
-            fw.close();
-            System.out.println("Đã ghi danh sách khách hàng ra file.");
-        } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Đã đọc danh sách khách hàng từ file.");
+        } catch (IOException e) {
+            System.out.println("Lỗi đọc file: " + e.getMessage());
         }
     }
 
     @Override
     public void Menu() {
-        boolean check = true;
-        while (check) {
+        boolean running = true;
+        while (running) {
             System.out.println("--------------------------");
-            System.out.println("1.Thêm khách hàng");
-            System.out.println("2.Sửa khách hàng");
-            System.out.println("3.Xóa khách hàng");
-            System.out.println("4.Tìm kiếm khách hàng");
-            System.out.println("5.Xuất danh sách khách hàng");
-            System.out.println("6.Lấy dữ liệu từ file");
-            System.out.println("7.Xuất dữ liệu ra file");
-            System.out.println("8.Thoát chương trình");
+            System.out.println("1. Thêm khách hàng");
+            System.out.println("2. Sửa khách hàng");
+            System.out.println("3. Xóa khách hàng");
+            System.out.println("4. Tìm kiếm khách hàng");
+            System.out.println("5. Xuất danh sách khách hàng");
+            System.out.println("6. Lấy dữ liệu từ file");
+            System.out.println("7. Xuất dữ liệu ra file");
+            System.out.println("8. Thoát chương trình");
             System.out.print("Nhập lựa chọn của bạn: ");
             int choice = sc.nextInt();
-            sc.nextLine();
+            sc.nextLine(); 
             switch (choice) {
-                case 1:
-                    Them();
-                    break;
-                case 2:
-                    Sua();
-                    break;
-                case 3:
-                    Xoa();
-                    break;
-                case 4:
-                    TimKiem();
-                    break;
-                case 5:
-                    Xuat();
-                    break;
-                case 6:
-                    DocFile();
-                    break;
-                case 7:
-                    GhiFile();
-                    break;
-                case 8:
-                    System.out.println("Thoat chuong trinh...");
-
-                default:
-                    check = false;
-                    System.out.println("Lua chon khong hop le! Vui long chon lai.");
-                    break;
+                case 1 -> Them();
+                case 2 -> Sua();
+                case 3 -> Xoa();
+                case 4 -> TimKiem();
+                case 5 -> Xuat();
+                case 6 -> Docfile();
+                case 7 -> Ghifile();
+                case 8 -> {
+                    running = false;
+                    System.out.println("Thoát chương trình...");
+                }
+                default -> System.out.println("Lựa chọn không hợp lệ! Vui lòng chọn lại.");
             }
         }
     }
-
 }
