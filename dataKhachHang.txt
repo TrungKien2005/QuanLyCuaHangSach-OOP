@@ -1,0 +1,3 @@
+Khachhang {TenKH='Nguyen Van A', Sdt='0111', DiaChi='hcm', MaKH='kh1'}
+Khachhang {TenKH='Nguyen Van B', Sdt='0222', DiaChi='binhduong', MaKH='kh2'}
+Khachhang {TenKH='Nguyen Van C', Sdt='0333', DiaChi='Ha Noi', MaKH='kh3'}
