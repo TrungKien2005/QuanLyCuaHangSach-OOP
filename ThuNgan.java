@@ -2,16 +2,19 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ThuNgan extends NhanVien {
-    private int banSo; 
-    private String CV = "ThuNgan"; 
+    private int banSo;
+    private String CV = "TN"; 
 
+    
     public ThuNgan() {}
 
+    
     public ThuNgan(String MaNV, String TenNV, int banSo) {
-        super(MaNV, TenNV);
+        super(MaNV, TenNV);  
         this.banSo = banSo;
     }
 
+    
     public int getBanSo() {
         return banSo;
     }
@@ -20,20 +23,25 @@ public class ThuNgan extends NhanVien {
         this.banSo = banSo;
     }
 
-    public void Nhap(ArrayList<NhanVien> dsnv) {
-        super.Nhap(dsnv);
+    
+    @Override
+    public void Nhap(ArrayList<NhanVien> dss) {
+        super.Nhap(dss);  
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Nhap so ban lam viec cua thu ngan: ");
+        System.out.print("Nhap ban so thu ngan: ");
         banSo = scanner.nextInt();
     }
 
+    
+    @Override
+    public void Xuat() {
+        super.Xuat();  
+        System.out.println("Ban lam viec so: " + banSo);
+    }
+
+    
     @Override
     public String toString() {
         return CV + "," + super.toString() + "," + banSo;
-    }
-
-    public void Xuat() {
-        super.Xuat();
-        System.out.println("So ban lam viec: " + banSo);
     }
 }

@@ -1,115 +1,186 @@
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class DSNV implements IChucNang {
-    private ArrayList<NhanVien> dsnv; 
-    private Scanner sc = new Scanner(System.in);
+    private ArrayList<NhanVien> dsnv;  
+    private Scanner scanner = new Scanner(System.in);
 
+   
     public DSNV() {
         dsnv = new ArrayList<>(); 
     }
-    // Hàm thiết lập có tham số
-    public void setDsnv(ArrayList<NhanVien> dsnv) {
-        this.dsnv = dsnv;  
+
+    
+    public DSNV(ArrayList<NhanVien> dsnv) {
+        this.dsnv = dsnv;
     }
 
     @Override
     public void Them() {
-        System.out.println("Chọn loại nhân viên để thêm: 1. Thu Ngân 2. Bảo Vệ");
-        int loaiNV = sc.nextInt();
-        sc.nextLine(); 
+        System.out.println("Chon loai nhan vien de them: 1. Thu Ngan 2. Bao Ve");
+        int loaiNV = scanner.nextInt();
+        scanner.nextLine(); 
 
-        NhanVien nv = null;
+        
         switch (loaiNV) {
             case 1:
-                // nv = new ThuNgan();
-                // break;
                 NhanVien nv = new ThuNgan();
-                ThuNgan.nhap(dsnv);
-                dsnv.add(ThuNgan);
+                nv.Nhap(dsnv);
+                dsnv.add(nv);
+                break;
             case 2:
-                // nv = new BaoVe();
-                // break;
-                NhanVien nv = new BaoVe();
-                BaoVe.nhap(dsnv);
-                dsnv.add(BaoVe);
+                nv = new BaoVe();
+                nv.Nhap(dsnv);
+                dsnv.add(nv);
                 break;
             default:
-                System.out.println("Lựa chọn không hợp lệ!");
+                System.out.println("Lua chon khong hop le!");
                 return;
         }
 
-        // nv.Nhap(dsnv);
-        // dsnv.add(nv); 
-        System.out.println("Đã thêm nhân viên thành công!");
+        System.out.println("Da them nhan vien thanh cong!");
     }
 
     @Override
     public void Sua() {
-        System.out.print("Nhập mã nhân viên muốn sửa: ");
-        String maNV = sc.nextLine();
+        System.out.print("Nhap ma nhan vien muon sua: ");
+        String maNV = scanner.nextLine();
         boolean timThay = false;
 
         for (NhanVien nv : dsnv) {
             if (nv.getMaNV().equals(maNV)) {
                 timThay = true;
-                System.out.println("Sửa thông tin cho nhân viên:");
-                nv.Nhap(dsnv); 
+
+                if (nv instanceof ThuNgan) {
+                    // Nếu là Thu Ngân
+                    System.out.print("Ban muon sua thong tin nao: 1. Ten nhan vien 2. Ban so: ");
+                    int choice = scanner.nextInt();
+                    scanner.nextLine(); 
+
+                    switch (choice) {
+                        case 1:
+                            System.out.print("Nhap ten nhan vien moi: ");
+                            nv.setTenNV(scanner.nextLine());
+                            break;
+                        case 2:
+                            System.out.print("Nhap ban so moi: ");
+                            ((ThuNgan) nv).setBanSo(scanner.nextInt());
+                            scanner.nextLine(); 
+                            break;
+                        default:
+                            System.out.println("Lua chon khong hop le!");
+                            break;
+                    }
+
+                } else if (nv instanceof BaoVe) {
+                    // Nếu là Bảo Vệ
+                    System.out.print("Ban muon sua thong tin nao: 1. Ten nhan vien 2. Gio lam viec: ");
+                    int choice = scanner.nextInt();
+                    scanner.nextLine(); 
+
+                    switch (choice) {
+                        case 1:
+                            System.out.print("Nhap ten nhan vien moi: ");
+                            nv.setTenNV(scanner.nextLine());
+                            break;
+                        case 2:
+                            System.out.print("Nhap gio lam viec moi: ");
+                            ((BaoVe) nv).setGioLamViec(scanner.nextInt());
+                            scanner.nextLine(); 
+                            break;
+                        default:
+                            System.out.println("Lua chon khong hop le!");
+                            break;
+                    }
+                }
+                System.out.println("Thong tin nhan vien da duoc sua thanh cong!");
                 break;
             }
         }
-
         if (!timThay) {
-            System.out.println("Mã nhân viên không tồn tại hoặc nhập chưa đúng!");
+            System.out.println("Ma nhan vien ban can sua khong ton tai hoac ban nhap sai!");
         }
     }
 
+
+
     @Override
     public void Xoa() {
-        System.out.print("Nhập mã của nhân viên muốn xóa: ");
-        String maNV = sc.nextLine();
-        boolean timThay = false;
+        String maNV;
+        boolean found = false;
 
+        // Nhập mã nhân viên muốn xóa
+        System.out.print("Nhap ma cua nhan vien ban muon xoa: ");
+        maNV = scanner.nextLine();
+
+        // Duyệt qua ArrayList dsnv để tìm nhân viên
         for (int i = 0; i < dsnv.size(); i++) {
             if (dsnv.get(i).getMaNV().equals(maNV)) {
-                timThay = true;
-                dsnv.remove(i); 
-                System.out.println("Nhân viên đã được xóa!");
-                break;
+                found = true;
+                dsnv.remove(i);  
+                System.out.println("Nhan vien da duoc xoa!");
+                break;  
             }
         }
 
-        if (!timThay) {
-            System.out.println("Mã nhân viên không tồn tại hoặc bạn nhập sai!");
+        if (!found) {
+            System.out.println("Ma nhan vien ban can xoa khong ton tai hoac ban nhap sai!");
         }
     }
 
     @Override
     public void TimKiem() {
-        System.out.print("Nhập tên nhân viên muốn tìm: ");
-        String tenNV = sc.nextLine();
-        boolean timThay = false;
+        String tenNV, maNV;
+        int choice, count = 0;
 
-        for (NhanVien nv : dsnv) {
-            if (nv.getTenNV().equalsIgnoreCase(tenNV)) {
-                timThay = true;
-                nv.Xuat(); 
-            }
-        }
+        // Hiển thị menu tìm kiếm
+        System.out.print("Ban muon tim theo ten nhan vien hay ma nhan vien? 1.Ten nhan vien 2.Ma nhan vien: ");
+        choice = scanner.nextInt();
+        scanner.nextLine(); // Đọc ký tự newline từ input trước đó
 
-        if (!timThay) {
-            System.out.println("Không tìm thấy nhân viên với tên bạn đã nhập!");
+        switch (choice) {
+            case 1:
+                System.out.print("Nhap ten nhan vien: ");
+                tenNV = scanner.nextLine();
+                for (NhanVien nv : dsnv) {
+                    if (nv.getTenNV().equalsIgnoreCase(tenNV)) {  // So sánh không phân biệt chữ hoa chữ thường
+                        count++;
+                        nv.Xuat();
+                    }
+                }
+                if (count == 0) {
+                    System.out.println("Nhan vien ban can tim khong co hoac ban nhap sai ten nhan vien!!!!");
+                }
+                break;
+
+            case 2:
+                System.out.print("Nhap ma nhan vien: ");
+                maNV = scanner.nextLine();
+                for (NhanVien nv : dsnv) {
+                    if (nv.getMaNV().equals(maNV)) {
+                        count++;
+                        nv.Xuat();
+                    }
+                }
+                if (count == 0) {
+                    System.out.println("Nhan vien co ma nhan vien ban can tim khong co hoac ban nhap sai ma nhan vien!!!!");
+                }
+                break;
+
+            default:
+                System.out.println("Lua chon khong hop le!");
+                break;
         }
     }
 
     @Override
     public void Xuat() {
         if (dsnv.isEmpty()) {
-            System.out.println("Danh sách nhân viên rỗng.");
+            System.out.println("Danh sach nhan vien rong.");
             return;
         }
-
         for (NhanVien nv : dsnv) {
             nv.Xuat(); 
         }
@@ -117,46 +188,44 @@ public class DSNV implements IChucNang {
 
     @Override
     public void Docfile() {
+        List<NhanVien> list = new ArrayList<>();
         try {
-            FileReader fr = new FileReader("src/dataNhanVien.txt");
+            FileReader fr = new FileReader("dataNhanVien.txt");
             BufferedReader br = new BufferedReader(fr);
             String line;
-
             while ((line = br.readLine()) != null) {
-                String[] data = line.split(",");
-                NhanVien nv = null;
-                if (data[0].equals("ThuNgan")) {
-                    nv = new ThuNgan(data[1], data[2], Integer.parseInt(data[3]));
-                } else if (data[0].equals("BaoVe")) {
-                    nv = new BaoVe(data[1], data[2], Integer.parseInt(data[3]));
+                String[] getData = line.split(",");
+                if (getData[0].equals("TN")) {
+                    list.add(new ThuNgan(getData[1], getData[2], Integer.parseInt(getData[3])));
+                } else if (getData[0].equals("BV")) {
+                    list.add(new BaoVe(getData[1], getData[2], Integer.parseInt(getData[3])));
                 }
-                dsnv.add(nv);
             }
-
             br.close();
             fr.close();
-            System.out.println("Dữ liệu đã được tải vào danh sách.");
-        } catch (IOException e) {
-            System.out.println("Lỗi đọc file: " + e.getMessage());
+            System.out.println("Da doc du lieu.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Khong doc duoc du lieu.");
         }
+        dsnv = new ArrayList<>(list); // Gán ArrayList đọc được vào dsnv
     }
 
     @Override
     public void Ghifile() {
         try {
-            FileWriter fw = new FileWriter("src/dataNhanVien.txt");
+            FileWriter fw = new FileWriter("dataNhanVien.txt");
             BufferedWriter bw = new BufferedWriter(fw);
-
             for (NhanVien nv : dsnv) {
                 bw.write(nv.toString());
                 bw.newLine();
             }
-
             bw.close();
             fw.close();
-            System.out.println("Dữ liệu đã được ghi vào file.");
-        } catch (IOException e) {
-            System.out.println("Lỗi ghi file: " + e.getMessage());
+            System.out.println("Da ghi du lieu.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Khong ghi duoc du lieu.");
         }
     }
 
@@ -164,19 +233,18 @@ public class DSNV implements IChucNang {
     public void Menu() {
         int choice;
         do {
-            System.out.println("----- Quản lý Nhân Viên -----");
-            System.out.println("1. Thêm nhân viên");
-            System.out.println("2. Xuất danh sách nhân viên");
-            System.out.println("3. Sửa thông tin nhân viên");
-            System.out.println("4. Xóa nhân viên");
-            System.out.println("5. Tìm kiếm nhân viên");
-            System.out.println("6. Đọc dữ liệu từ file");
-            System.out.println("7. Ghi dữ liệu vào file");
-            System.out.println("8. Thoát");
-            System.out.print("Nhập lựa chọn của bạn: ");
-            choice = sc.nextInt();
-            sc.nextLine();
-
+            System.out.println("----------------------------------------------------");
+            System.out.println("1.Them nhan vien");
+            System.out.println("2.Xuat danh sach nhan vien");
+            System.out.println("3.Sua Thong tin nhan vien");
+            System.out.println("4.Xoa nhan vien");
+            System.out.println("5.Tim kiem nhan vien");
+            System.out.println("6.Doc du lieu file");
+            System.out.println("7.Ghi du lieu vao file");
+            System.out.println("8.Thoat chuong trinh");
+            System.out.print("Nhap lua chon: ");
+            choice = scanner.nextInt();
+            scanner.nextLine();
             switch (choice) {
                 case 1:
                     Them();
@@ -200,11 +268,10 @@ public class DSNV implements IChucNang {
                     Ghifile();
                     break;
                 case 8:
-                    System.out.println("Thoát chương trình...");
+                    System.out.println("Thoat chuong trinh...");
                     break;
                 default:
-                    System.out.println("Lựa chọn không hợp lệ!");
-                    break;
+                    System.out.println("Lua chon khong hop le! Vui long chon lai.");
             }
         } while (choice != 8);
     }
