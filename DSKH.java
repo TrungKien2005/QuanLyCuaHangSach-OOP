@@ -83,7 +83,7 @@ public class DSKH implements IChucNang {
 
     @Override
     public void Ghifile() {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("dataKhachHang.txt"))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("QuanLyCuaHangSach-OOP-main/dataKhachHang.txt"))) {
             for (KhachHang kh : dskh) {
                 bw.write(kh.toString());
                 bw.newLine();
@@ -96,7 +96,7 @@ public class DSKH implements IChucNang {
 
     @Override
     public void Docfile() {
-        try (BufferedReader br = new BufferedReader(new FileReader("dataKhachHang.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("QuanLyCuaHangSach-OOP-main/dataKhachHang.txt"))) {
             dskh.clear();
             String line;
             while ((line = br.readLine()) != null) {
