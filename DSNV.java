@@ -192,7 +192,7 @@ public class DSNV implements IChucNang {
     public void Docfile() {
         List<NhanVien> list = new ArrayList<>();
         try {
-            FileReader fr = new FileReader("dataNhanVien.txt");
+            FileReader fr = new FileReader("QuanLyCuaHangSach-OOP-main/dataNhanVien.txt");
             BufferedReader br = new BufferedReader(fr);
             String line;
             while ((line = br.readLine()) != null) {
@@ -216,7 +216,7 @@ public class DSNV implements IChucNang {
     @Override
     public void Ghifile() {
         try {
-            FileWriter fw = new FileWriter("dataNhanVien.txt");
+            FileWriter fw = new FileWriter("QuanLyCuaHangSach-OOP-main/dataNhanVien.txt");
             BufferedWriter bw = new BufferedWriter(fw);
             for (NhanVien nv : dsnv) {
                 bw.write(nv.toString());
