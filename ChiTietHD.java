@@ -32,4 +32,7 @@ public class ChiTietHD {
         System.out.println("So luong: "+soLuong);
         System.out.println("Gia: "+gia);
     }
+    public Object getMaSach() {
+        return maSach;  
+    }
 }
