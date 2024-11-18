@@ -16,7 +16,9 @@ public class DSNV implements IChucNang {
     public DSNV(ArrayList<NhanVien> dsnv) {
         this.dsnv = dsnv;
     }
-
+    public ArrayList<NhanVien> getDSNV() {
+        return dsnv; // Trả về danh sách sách
+    }
     @Override
     public void Them() {
         System.out.println("Chon loai nhan vien de them: 1. Thu Ngan 2. Bao Ve");
