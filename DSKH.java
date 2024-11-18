@@ -10,7 +10,9 @@ public class DSKH implements IChucNang {
         dskh = new ArrayList<>();
         sc = new Scanner(System.in);
     }
-
+    public ArrayList<KhachHang> getDSKH() {
+        return dskh;
+    }
     @Override
     public void Them() {
         KhachHang kh = new KhachHang();
