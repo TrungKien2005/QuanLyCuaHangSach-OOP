@@ -12,6 +12,9 @@ public class DSS implements IChucNang {
     public DSS(ArrayList<Sach> dss){
         this.dss=(ArrayList<Sach>) dss;
     }
+    public ArrayList<Sach> getDSS() {
+        return dss; // Trả về danh sách sách
+    }
     @Override
     public void Them() {
         System.out.println("Chon loai sach de them: 1. Sach Khoa Hoc 2. Sach Nau An 3. Sach Van Hoc");
