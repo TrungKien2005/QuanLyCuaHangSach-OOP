@@ -1,3 +1,5 @@
-Khachhang {TenKH='Nguyen Van A', Sdt='0111', DiaChi='hcm', MaKH='kh1'}
-Khachhang {TenKH='Nguyen Van B', Sdt='0222', DiaChi='binhduong', MaKH='kh2'}
-Khachhang {TenKH='Nguyen Van C', Sdt='0333', DiaChi='Ha Noi', MaKH='kh3'}
+KH001,Nguyen Van A,0912345678, Hanoi
+KH002,Tran Thi B,0987654321,Ho Chi Minh
+KH003,Le Van C,0901234567,789  Da Nang
+KH004,Pham Thi D,0934567890, Hai Phong
+KH005,Hoang Van E,0976543210, Can Tho
