@@ -138,7 +138,7 @@ public void TimKiem() {
         }
     }
     public void Docfile() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("QuanLyCuaHangSach-OOP-main/dataHoaDon.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("dataHoaDon.txt"))) {
             String line;
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); // Định dạng ngày (ví dụ dd/MM/yyyy)
             
@@ -205,7 +205,7 @@ public void TimKiem() {
     }
     
     public void Ghifile() {
-        try (FileWriter writer = new FileWriter("QuanLyCuaHangSach-OOP-main/dataHoaDon.txt")) {
+        try (FileWriter writer = new FileWriter("dataHoaDon.txt")) {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); // Định dạng ngày (ví dụ dd/MM/yyyy)
     
             for (hoadon hd : dshd) {
