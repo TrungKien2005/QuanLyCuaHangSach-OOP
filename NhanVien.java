@@ -31,7 +31,7 @@ public abstract class NhanVien {
     }
 
     
-    public void Nhap(ArrayList<NhanVien> dss) {
+    public void Nhap(ArrayList<NhanVien> dsnv) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nhap ma nhan vien: ");
         MaNV = scanner.nextLine();
@@ -40,7 +40,7 @@ public abstract class NhanVien {
         
         while (check) {
             check = false;  
-            for (NhanVien nv : dss) {
+            for (NhanVien nv : dsnv) {
                 if (nv.getMaNV().equals(MaNV)) {
                     System.out.println("Ma nhan vien nay da ton tai. Vui long nhap lai!");
                     System.out.print("Nhap ma nhan vien: ");
