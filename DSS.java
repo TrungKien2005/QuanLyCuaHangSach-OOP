@@ -208,7 +208,7 @@ public class DSS implements IChucNang {
     public void Docfile(){
         List<Sach> list = new ArrayList<>();
         try {
-            FileReader fr = new FileReader("QuanLyCuaHangSach-OOP-main/dataSach.txt");
+            FileReader fr = new FileReader("dataSach.txt");
             BufferedReader br = new BufferedReader(fr);
             String line;
             while ((line = br.readLine()) != null) {
@@ -237,7 +237,7 @@ public class DSS implements IChucNang {
     @Override
     public void Ghifile() {
         try {
-            FileWriter fw = new FileWriter("QuanLyCuaHangSach-OOP-main/dataSach.txt");
+            FileWriter fw = new FileWriter("dataSach.txt");
             BufferedWriter bw = new BufferedWriter(fw);
             for (Sach sach : dss) {
                 bw.write(sach.toString());
