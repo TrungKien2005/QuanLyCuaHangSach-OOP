@@ -15,19 +15,10 @@ public class DSKH implements IChucNang {
     }
     @Override
     public void Them() {
-        Docfile();
-        while (true) {
-            KhachHang kh = new KhachHang();
-            kh.Nhap();
-            boolean maTrung = dskh.stream().anyMatch(khachHang -> khachHang.getMaKH().equals(kh.getMaKH()));
-            if (maTrung) {
-                System.out.println("Mã khách hàng đã tồn tại! Vui lòng nhập lại.");
-            } else {
-                dskh.add(kh);
-                System.out.println("Đã thêm khách hàng.");
-                break;
-            }
-        }
+        KhachHang kh = new KhachHang();
+        kh.Nhap();
+        dskh.add(kh);
+        System.out.println("Đã thêm khách hàng.");
     }
 
     @Override
