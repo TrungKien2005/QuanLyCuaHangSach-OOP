@@ -143,7 +143,7 @@ public void TimKiem() {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); // Định dạng ngày (ví dụ dd/MM/yyyy)
             
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(";");
+                String[] parts = line.split(",");
                 
                 String maHD = parts[0]; // Mã hóa đơn
                 Date ngayLap = null;
@@ -210,22 +210,22 @@ public void TimKiem() {
     
             for (hoadon hd : dshd) {
                 StringBuilder line = new StringBuilder();
-                line.append(hd.getMaHD()).append(";"); // Ghi mã hóa đơn
+                line.append(hd.getMaHD()).append(","); // Ghi mã hóa đơn
     
                 // Ghi ngày lập hóa đơn theo định dạng ngày
                 String formattedDate = dateFormat.format(hd.getNgaylaphd());
-                line.append(formattedDate).append(";");
+                line.append(formattedDate).append(",");
     
-                line.append(hd.getKhachHang().getMaKH()).append(";"); // Ghi mã khách hàng
-                line.append(hd.getNhanVien().getMaNV()).append(";"); // Ghi mã nhân viên
+                line.append(hd.getKhachHang().getMaKH()).append(","); // Ghi mã khách hàng
+                line.append(hd.getNhanVien().getMaNV()).append(","); // Ghi mã nhân viên
     
                 // Ghi các chi tiết hóa đơn
                 for (ChiTietHD cthd : hd.getChiTiet()) {
-                    line.append(cthd.getMaSP()).append("-").append(cthd.getSoLuong()).append(";");
+                    line.append(cthd.getMaSP()).append("-").append(cthd.getSoLuong()).append(",");
                 }
     
                 // Xóa dấu `;` dư thừa cuối dòng
-                if (line.charAt(line.length() - 1) == ';') {
+                if (line.charAt(line.length() - 1) == ',') {
                     line.deleteCharAt(line.length() - 1);
                 }
     
