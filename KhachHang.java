@@ -63,12 +63,7 @@ public class KhachHang {
     }
     @Override
     public String toString() {
-        return "Khachhang {" +
-                "TenKH='" + TenKH + '\'' +
-                ", Sdt='" + Sdt + '\'' +
-                ", DiaChi='" + Diachi + '\'' +
-                ", MaKH='" + MaKH + '\'' +
-                '}';
+        return return MaKH + "," + TenKH + "," + Sdt + "," + Diachi;
     }
 
 }
