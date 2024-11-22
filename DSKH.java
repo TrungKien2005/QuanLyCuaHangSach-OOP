@@ -15,10 +15,19 @@ public class DSKH implements IChucNang {
     }
     @Override
     public void Them() {
-        KhachHang kh = new KhachHang();
-        kh.Nhap();
-        dskh.add(kh);
-        System.out.println("Đã thêm khách hàng.");
+        Docfile();
+        while (true) {
+            KhachHang kh = new KhachHang();
+            kh.Nhap();
+            boolean maTrung = dskh.stream().anyMatch(khachHang -> khachHang.getMaKH().equals(kh.getMaKH()));
+            if (maTrung) {
+                System.out.println("Mã khách hàng đã tồn tại! Vui lòng nhập lại.");
+            } else {
+                dskh.add(kh);
+                System.out.println("Đã thêm khách hàng.");
+                break;
+            }
+        }
     }
 
     @Override
@@ -83,7 +92,7 @@ public class DSKH implements IChucNang {
 
     @Override
     public void Ghifile() {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("QuanLyCuaHangSach-OOP-main/dataKhachHang.txt"))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("dataKhachHang.txt"))) {
             for (KhachHang kh : dskh) {
                 bw.write(kh.toString());
                 bw.newLine();
@@ -96,7 +105,7 @@ public class DSKH implements IChucNang {
 
     @Override
     public void Docfile() {
-        try (BufferedReader br = new BufferedReader(new FileReader("QuanLyCuaHangSach-OOP-main/dataKhachHang.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("dataKhachHang.txt"))) {
             dskh.clear();
             String line;
             while ((line = br.readLine()) != null) {
