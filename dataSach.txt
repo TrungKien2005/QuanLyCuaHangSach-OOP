@@ -1,6 +1,6 @@
-kh,S001,Vật lý đại cương,Nguyễn Văn A,120000,10,Cao cấp
-na,S002,Ẩm thực Việt Nam,Trần Bích Ngọc,80000,5,Chính
-vh,S003,Truyện Kiều,Nguyễn Du,150000,7,Thơ
-kh,S004,Hóa học hữu cơ,Phạm Thị B,95000,8,Trung cấp
-na,S005,Món ăn chay,Ngô Thị C,60000,3,Phụ
-vh,S006,Lão Hạc,Nam Cao,45000,10,Truyện ngắn
+KH,S001,Vật lý đại cương,Nguyễn Văn A,120000.0,10,Cao cấp
+NA,S002,Ẩm thực Việt Nam,Trần Bích Ngọc,80000,5,Chính
+VH,S003,Truyện Kiều,Nguyễn Du,150000,7,Thơ
+KH,S004,Hóa học hữu cơ,Phạm Thị B,95000,8,Trung cấp
+NA,S005,Món ăn chay,Ngô Thị C,60000,3,Phụ
+VH,S006,Lão Hạc,Nam Cao,45000,10,Truyện ngắn
