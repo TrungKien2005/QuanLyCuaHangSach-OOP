@@ -213,21 +213,23 @@ public class DSS implements IChucNang {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] getData = line.split(",");
-                if (getData[0].equals("kh")) {
+                if (getData[0].equals("KH")) {
                     list.add(new SachKhoaHoc(getData[1], getData[2], getData[3],
                             Float.parseFloat(getData[4]), Integer.parseInt(getData[5]), getData[6]));
-                } else if (getData[0].equals("na")) {
+                } else if (getData[0].equals("NA")) {
                     list.add(new SachNauAn(getData[1], getData[2], getData[3],
                             Float.parseFloat(getData[4]), Integer.parseInt(getData[5]), getData[6]));
-                } else if (getData[0].equals("vh")) {
+                } else if (getData[0].equals("VH")) {
                     list.add(new SachVanHoc(getData[1], getData[2], getData[3],
                             Float.parseFloat(getData[4]), Integer.parseInt(getData[5]), getData[6]));
                 }
             }
             br.close();
             fr.close();
+            System.out.println("Da doc du lieu.");
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Khong doc duoc du lieu.");
         }
         dss = new ArrayList<>(list); // Gán ArrayList đọc được vào dss
     }
