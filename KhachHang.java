@@ -63,7 +63,7 @@ public class KhachHang {
     }
     @Override
     public String toString() {
-        return return MaKH + "," + TenKH + "," + Sdt + "," + Diachi;
+        return MaKH + "," + TenKH + "," + Sdt + "," + Diachi;
     }
 
 }
