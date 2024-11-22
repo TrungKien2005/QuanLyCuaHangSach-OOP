@@ -46,20 +46,20 @@ public class KhachHang {
 
     public void Nhap(){
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap ma khach hang: ");
+        System.out.print("Nhập mã khách hàng: ");
         MaKH = sc.nextLine();
-        System.out.print("Nhap ten khach hang:");
+        System.out.print("Nhập tên khách hàng: ");
         TenKH=sc.nextLine();
-        System.out.print("Nhap so dien thoai:");
+        System.out.print("Nhập số điện thọai: ");
         Sdt=sc.nextLine();
-        System.out.print("Nhap dia chi:");
+        System.out.print("Nhập địa chỉ: ");
         Diachi=sc.nextLine();
     }
     public void Xuat(){
-        System.out.println("Ma khach hang: "+MaKH);
-        System.out.println("Ten khach hang: "+TenKH);
-        System.out.println("So dien thoai: "+Sdt);
-        System.out.println("Dia chi: "+Diachi);
+        System.out.println("Mã khách hàng: "+MaKH);
+        System.out.println("Tên khách hàng: "+TenKH);
+        System.out.println("Số điện thọai: "+Sdt);
+        System.out.println("Địa chỉ: "+Diachi);
     }
     @Override
     public String toString() {
