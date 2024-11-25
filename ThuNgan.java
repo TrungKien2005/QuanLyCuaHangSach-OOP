@@ -25,8 +25,8 @@ public class ThuNgan extends NhanVien {
 
     
     @Override
-    public void Nhap(ArrayList<NhanVien> dss) {
-        super.Nhap(dss);  
+    public void Nhap(ArrayList<NhanVien> dsnv) {
+        super.Nhap(dsnv);  
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nhap ban so thu ngan: ");
         banSo = scanner.nextInt();
