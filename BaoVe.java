@@ -25,8 +25,8 @@ public class BaoVe extends NhanVien {
 
     
     @Override
-    public void Nhap(ArrayList<NhanVien> dss) {
-        super.Nhap(dss);  
+    public void Nhap(ArrayList<NhanVien> dsnv) {
+        super.Nhap(dsnv);  
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nhap gio lam viec cua bao ve: ");
         GioLamViec = scanner.nextInt();
