@@ -55,52 +55,32 @@ public class DSNV implements IChucNang {
             if (nv.getMaNV().equals(maNV)) {
                 timThay = true;
 
+                // Nếu là ThuNgan
                 if (nv instanceof ThuNgan) {
-                    // Nếu là Thu Ngân
-                    System.out.print("Ban muon sua thong tin nao: 1. Ten nhan vien 2. Ban so: ");
-                    int choice = scanner.nextInt();
-                    scanner.nextLine(); 
+                    System.out.println("Nhan vien la thu ngan. Nhap thong tin muon sua:");
+                    System.out.print("Sua ten nhan vien: ");
+                    nv.setTenNV(scanner.nextLine());
 
-                    switch (choice) {
-                        case 1:
-                            System.out.print("Nhap ten nhan vien moi: ");
-                            nv.setTenNV(scanner.nextLine());
-                            break;
-                        case 2:
-                            System.out.print("Nhap ban so moi: ");
-                            ((ThuNgan) nv).setBanSo(scanner.nextInt());
-                            scanner.nextLine(); 
-                            break;
-                        default:
-                            System.out.println("Lua chon khong hop le!");
-                            break;
-                    }
+                    System.out.print("Sua ban so: ");
+                    ((ThuNgan) nv).setBanSo(scanner.nextInt());
+                    scanner.nextLine(); // Đọc ký tự newline còn lại
+                } 
+                // Nếu là BaoVe
+                else if (nv instanceof BaoVe) {
+                    System.out.println("Nhan vien la bao Ve. Nhap thong tin muon sua:");
+                    System.out.print("Sua ten nhan vien: ");
+                    nv.setTenNV(scanner.nextLine());
 
-                } else if (nv instanceof BaoVe) {
-                    // Nếu là Bảo Vệ
-                    System.out.print("Ban muon sua thong tin nao: 1. Ten nhan vien 2. Gio lam viec: ");
-                    int choice = scanner.nextInt();
-                    scanner.nextLine(); 
-
-                    switch (choice) {
-                        case 1:
-                            System.out.print("Nhap ten nhan vien moi: ");
-                            nv.setTenNV(scanner.nextLine());
-                            break;
-                        case 2:
-                            System.out.print("Nhap gio lam viec moi: ");
-                            ((BaoVe) nv).setGioLamViec(scanner.nextInt());
-                            scanner.nextLine(); 
-                            break;
-                        default:
-                            System.out.println("Lua chon khong hop le!");
-                            break;
-                    }
+                    System.out.print("Sua gio lam viec: ");
+                    ((BaoVe) nv).setGioLamViec(scanner.nextInt());
+                    scanner.nextLine(); // Đọc ký tự newline còn lại
                 }
+
                 System.out.println("Thong tin nhan vien da duoc sua thanh cong!");
                 break;
             }
         }
+
         if (!timThay) {
             System.out.println("Ma nhan vien ban can sua khong ton tai hoac ban nhap sai!");
         }
