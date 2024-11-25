@@ -91,7 +91,7 @@ public class DSNV implements IChucNang {
     @Override
     public void Xoa() {
         String maNV;
-        boolean found = false;
+        boolean timThay = false;
 
         // Nhập mã nhân viên muốn xóa
         System.out.print("Nhap ma cua nhan vien ban muon xoa: ");
@@ -100,14 +100,14 @@ public class DSNV implements IChucNang {
         // Duyệt qua ArrayList dsnv để tìm nhân viên
         for (int i = 0; i < dsnv.size(); i++) {
             if (dsnv.get(i).getMaNV().equals(maNV)) {
-                found = true;
+                timThay = true;
                 dsnv.remove(i);  
                 System.out.println("Nhan vien da duoc xoa!");
                 break;  
             }
         }
 
-        if (!found) {
+        if (!timThay) {
             System.out.println("Ma nhan vien ban can xoa khong ton tai hoac ban nhap sai!");
         }
     }
