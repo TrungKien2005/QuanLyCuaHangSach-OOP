@@ -114,46 +114,46 @@ public class DSNV implements IChucNang {
 
     @Override
     public void TimKiem() {
-        String tenNV, maNV;
-        int choice, count = 0;
+    String tenNV, maNV;
+    int choice;
+    boolean timThay = false; 
 
-        // Hiển thị menu tìm kiếm
-        System.out.print("Ban muon tim theo ten nhan vien hay ma nhan vien? 1.Ten nhan vien 2.Ma nhan vien: ");
-        choice = scanner.nextInt();
-        scanner.nextLine(); // Đọc ký tự newline từ input trước đó
+    System.out.print("Ban muon tim theo ten nhan vien hay ma nhan vien? 1.Ten nhan vien 2.Ma nhan vien: ");
+    choice = scanner.nextInt();
+    scanner.nextLine(); 
 
-        switch (choice) {
-            case 1:
-                System.out.print("Nhap ten nhan vien: ");
-                tenNV = scanner.nextLine();
-                for (NhanVien nv : dsnv) {
-                    if (nv.getTenNV().equalsIgnoreCase(tenNV)) {  // So sánh không phân biệt chữ hoa chữ thường
-                        count++;
-                        nv.Xuat();
-                    }
+    switch (choice) {
+        case 1:
+            System.out.print("Nhap ten nhan vien: ");
+            tenNV = scanner.nextLine();
+            for (NhanVien nv : dsnv) {
+                if (nv.getTenNV().equalsIgnoreCase(tenNV)) {  
+                    timThay = true;
+                    nv.Xuat();
                 }
-                if (count == 0) {
-                    System.out.println("Nhan vien ban can tim khong co hoac ban nhap sai ten nhan vien!!!!");
-                }
-                break;
+            }
+            if (!timThay) {
+                System.out.println("Nhan vien ban can tim khong co hoac ban nhap sai ten nhan vien!");
+            }
+            break;
 
-            case 2:
-                System.out.print("Nhap ma nhan vien: ");
-                maNV = scanner.nextLine();
-                for (NhanVien nv : dsnv) {
-                    if (nv.getMaNV().equals(maNV)) {
-                        count++;
-                        nv.Xuat();
-                    }
+        case 2:
+            System.out.print("Nhap ma nhan vien: ");
+            maNV = scanner.nextLine();
+            for (NhanVien nv : dsnv) {
+                if (nv.getMaNV().equals(maNV)) {
+                    timThay = true;
+                    nv.Xuat();
                 }
-                if (count == 0) {
-                    System.out.println("Nhan vien co ma nhan vien ban can tim khong co hoac ban nhap sai ma nhan vien!!!!");
-                }
-                break;
+            }
+            if (!timThay) {
+                System.out.println("Nhan vien co ma nhan vien ban can tim khong co hoac ban nhap sai ma nhan vien!");
+            }
+            break;
 
-            default:
-                System.out.println("Lua chon khong hop le!");
-                break;
+        default:
+            System.out.println("Lua chon khong hop le!");
+            break;
         }
     }
 
