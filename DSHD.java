@@ -39,16 +39,6 @@ public class DSHD implements IChucNang{
     }
     @Override
     public void Sua(){
-        System.out.print("Nhập mã hóa đơn cần sửa: ");
-        String maHD = scanner.nextLine();
-        for (hoadon hd : dshd) {
-            if (hd.getMaHD().equals(maHD)) {
-                hd.Nhap(dss, dskh, dsnv); // Cho phép nhập lại thông tin hóa đơn
-                System.out.println("Sửa hóa đơn thành công.");
-                return;
-            }
-        }
-        System.out.println("Không tìm thấy hóa đơn với mã " + maHD);
     }
     @Override
     public void Xoa(){
@@ -248,12 +238,11 @@ public void TimKiem() {
             System.out.println("----------------------------------------------------");
             System.out.println("1.Them hoa don");
             System.out.println("2.Xuat danh sach hoa don");
-            System.out.println("3.Sua Thong tin hoa don");
-            System.out.println("4.Xoa hoa don");
-            System.out.println("5.Tim kiem hoa don");
-            System.out.println("6.Doc du lieu file");
-            System.out.println("7.Ghi du lieu vao file");
-            System.out.println("8.Thoat chuong trinh");
+            System.out.println("3.Xoa hoa don");
+            System.out.println("4.Tim kiem hoa don");
+            System.out.println("5.Doc du lieu file");
+            System.out.println("6.Ghi du lieu vao file");
+            System.out.println("7.Thoat chuong trinh");
             System.out.print("Nhap lua chon: ");
             choice = scanner.nextInt();
             scanner.nextLine();
@@ -265,21 +254,18 @@ public void TimKiem() {
                     Xuat();
                     break;
                 case 3:
-                    Sua();
-                    break;
-                case 4:
                     Xoa();
                     break;
-                case 5:
+                case 4:
                     TimKiem();
                     break;
-                case 6:
+                case 5:
                     Docfile();
                     break;
-                case 7:
+                case 6:
                     Ghifile();
                     break;
-                case 8:
+                case 7:
                     System.out.println("Thoat chuong trinh...");
                     break;
                 default:
