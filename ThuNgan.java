@@ -28,7 +28,7 @@ public class ThuNgan extends NhanVien {
     public void Nhap(ArrayList<NhanVien> dsnv) {
         super.Nhap(dsnv);  
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Nhap ban so thu ngan: ");
+        System.out.print("Nhập số thứ tự bàn của thu ngân: ");
         BanSo = scanner.nextInt();
     }
 
@@ -36,7 +36,7 @@ public class ThuNgan extends NhanVien {
     @Override
     public void Xuat() {
         super.Xuat();  
-        System.out.println("Ban lam viec so: " + BanSo);
+        System.out.println("Bàn làm việc số: " + BanSo);
     }
 
     
