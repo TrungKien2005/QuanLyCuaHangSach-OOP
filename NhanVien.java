@@ -33,7 +33,7 @@ public abstract class NhanVien {
     
     public void Nhap(ArrayList<NhanVien> dsnv) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Nhap ma nhan vien: ");
+        System.out.print("Nhập mã nhân viên: ");
         MaNV = scanner.nextLine();
         boolean check = true;
 
@@ -42,8 +42,8 @@ public abstract class NhanVien {
             check = false;  
             for (NhanVien nv : dsnv) {
                 if (nv.getMaNV().equals(MaNV)) {
-                    System.out.println("Ma nhan vien nay da ton tai. Vui long nhap lai!");
-                    System.out.print("Nhap ma nhan vien: ");
+                    System.out.println("Mã nhân viên này đã tồn tại. vui lòng nhập lại!");
+                    System.out.print("Nhập mã nhân viên: ");
                     MaNV = scanner.nextLine();
                     check = true;  
                     break;
@@ -51,15 +51,15 @@ public abstract class NhanVien {
             }
         }
 
-        System.out.print("Nhap ten nhan vien: ");
+        System.out.print("Nhập tên nhân viên: ");
         TenNV = scanner.nextLine();
     }
 
     
     public void Xuat() {
         System.out.println("------------------------");
-        System.out.println("Ma nhan vien: " + MaNV);
-        System.out.println("Ten nhan vien: " + TenNV);
+        System.out.println("Mã nhân viên: " + MaNV);
+        System.out.println("Tên nhân viên: " + TenNV);
     }
 
     
