@@ -28,7 +28,7 @@ public class BaoVe extends NhanVien {
     public void Nhap(ArrayList<NhanVien> dsnv) {
         super.Nhap(dsnv);  
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Nhap gio lam viec cua bao ve: ");
+        System.out.print("Nhập giờ làm việc của bảo vệ: ");
         GioLamViec = scanner.nextInt();
     }
 
@@ -36,7 +36,7 @@ public class BaoVe extends NhanVien {
     @Override
     public void Xuat() {
         super.Xuat();  
-        System.out.println("Gio lam viec: " + GioLamViec);
+        System.out.println("Giờ làm việc: " + GioLamViec);
     }
 
     
